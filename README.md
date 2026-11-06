@@ -23,7 +23,6 @@ a validation-only selector, brings coverage back online.
                      With these you can reproduce all numbers without training.
       calib/         result CSVs + facts.json -- where the paper's numbers live
       *.py           see below
-    figures/         Figure 1 (png + the script that draws it from the CSVs)
 
     requirements.txt
 
@@ -68,9 +67,7 @@ to rebuild the caches from scratch:
     python3 Exp/cache_musig.py --device cuda    # Prob-run caches
     python3 Exp/cache_cqr.py                    # CQR member caches
 
-Figure 1 regenerates from the same CSVs:
 
-    python3 figures/fig1_camera_gen.py
 
 ## Conventions
 
