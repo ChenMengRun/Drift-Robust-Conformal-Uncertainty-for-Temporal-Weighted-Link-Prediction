@@ -1,0 +1,14 @@
+== SALT_Edge @ HMob | ckpt: Exp/pt/HMob/SALT_base_edge_auto/16_10.948_2.814.pth
+权重加载: 39 跳过: 0; 概率模型: False; device: cuda
+test 边数: 60072; 真值范围: [0.00, 249.39]
+[点预测] edge-RMSE=27.2065  edge-MAE=18.1447  (原始空间)
+
+[真值分层] bin,n,RMSE,MAE,meanσ,cov95 (见 tail_bins.csv)
+      p0-p50  n= 30036  RMSE=  26.450  MAE= 17.027  meanσ=    nan  cov95=nan  frac=0.500
+     p50-p75  n= 15018  RMSE=  32.225  MAE= 23.254  meanσ=    nan  cov95=nan  frac=0.250
+     p75-p90  n=  8934  RMSE=  22.200  MAE= 15.056  meanσ=    nan  cov95=nan  frac=0.149
+     p90-p95  n=  3080  RMSE=  21.638  MAE= 12.155  meanσ=    nan  cov95=nan  frac=0.051
+     p95-p99  n=  2402  RMSE=  23.771  MAE= 17.249  meanσ=    nan  cov95=nan  frac=0.040
+    p99-p100  n=   602  RMSE=  32.942  MAE= 26.513  meanσ=    nan  cov95=nan  frac=0.010
+
+[同方差对照] σ_const(val)=23.0980  CRPS=13.7506  NLL=4.7524  ECE=0.0588

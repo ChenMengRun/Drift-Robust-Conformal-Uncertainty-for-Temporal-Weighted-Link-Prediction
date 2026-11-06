@@ -1,0 +1,61 @@
+# ===== Probe: LyonSchool from-scratch convergence check =====
+#
+# Same question and same comparability argument as DC/_probe_base.yaml:
+# does this dataset learn from scratch with the HMob/INVIS15 P1 architecture?
+#
+#   HMob   : loss 35809 -> 29949 over epochs 2..11, Test 13.18 -> 10.86  (LEARNS)
+#   INVIS15: loss 46001 -> 45214 over epochs 2..11, Test  4.32 ->  4.40  (STALLED)
+#
+# LyonSchool matters because it has a real feat.npy (11 dims) AND a reasonable
+# official baseline (edge RMSE 4.91, the easiest of the eight), so it is the
+# natural fallback host for the feature-masking experiment if INVIS15 is dead.
+# The config mirrors the official LyonSchool/SALT.yaml exactly except
+# model -> SALT_Dense, plus Selection/seed/EarlyStop for parity.
+#
+# Launch:  SALT_MAX_EPOCHS=8
+
+data_name: "LyonSchool"
+model: "model.salt_dense.SALT_Dense"
+
+optimizer: "RMSprop"
+learning_rate: 5e-4
+dropout_rate: 0.0
+
+num_pre_epochs: 30
+num_epochs: 300
+win_size: 10
+pred_size: 1
+
+resume_last: False
+
+Selection: "rmse"
+
+Loss:
+  name: "mae_and_mse"
+  alpha: 40
+  theta: 0.1
+
+feat_proj_dims:
+  - 43
+  - 32
+  - 32
+
+WLE:
+  model_class: "model.modules.wle"
+  in_channels: 64
+  hidden_channels: 64
+  out_channels: 1
+
+TLSSM:
+  model_class: "model.modules.tlssm"
+  d_model: 1
+  d_ssm: 1
+  headdim: 1
+  d_state: 4
+  d_conv: 2
+  rmsnorm: False
+
+EarlyStop_patience: 30
+EarlyStop_min_delta: 1.0e-4
+
+seed: 1

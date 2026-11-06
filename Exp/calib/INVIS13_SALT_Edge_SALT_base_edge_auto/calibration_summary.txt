@@ -1,0 +1,13 @@
+== SALT_Edge @ INVIS13 | ckpt: Exp/pt/INVIS13/SALT_base_edge_auto/20_6.165_1.846.pth
+权重加载: 39 跳过: 0; 概率模型: False; device: cuda
+test 边数: 4350; 真值范围: [1.00, 50.00]
+[点预测] edge-RMSE=22.9044  edge-MAE=15.6015  (原始空间)
+
+[真值分层] bin,n,RMSE,MAE,meanσ,cov95 (见 tail_bins.csv)
+      p0-p50  n=  2080  RMSE=   2.863  MAE=  2.351  meanσ=    nan  cov95=nan  frac=0.478
+     p50-p75  n=  1159  RMSE=  15.842  MAE= 14.736  meanσ=    nan  cov95=nan  frac=0.266
+     p75-p90  n=   626  RMSE=  35.864  MAE= 35.304  meanσ=    nan  cov95=nan  frac=0.144
+     p90-p95  n=   190  RMSE=  47.875  MAE= 47.847  meanσ=    nan  cov95=nan  frac=0.044
+    p99-p100  n=   295  RMSE=  49.864  MAE= 49.854  meanσ=    nan  cov95=nan  frac=0.068
+
+[同方差对照] σ_const(val)=14.9516  CRPS=12.6975  NLL=4.7971  ECE=0.1099

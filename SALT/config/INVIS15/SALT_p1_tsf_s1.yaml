@@ -1,0 +1,58 @@
+# ===== INVIS15 P1 -- TSF arm, seed 1 =====
+# Identical to SALT_p1_base_s1.yaml except tsf: true.
+# feat_proj_dims[0] is auto-rewritten by the trainer: 24 -> 36 (= 24 + 12).
+#
+# ONLY RUN THIS AFTER the base pre-check has shown that scratch can reach
+# the local official line (~2.806). Otherwise the comparison is meaningless:
+# on HMob the TSF arm is WORSE than base at epoch 0 (15.99 vs 13.18) and only
+# overtakes around epoch 5, with its best at epoch 13-25. Judging TSF from an
+# early-truncated run gives a random sign.
+
+data_name: "INVIS15"
+model: "model.salt_dense.SALT_Dense"
+
+# ===== the single experimental variable =====
+tsf: true
+
+optimizer: "RMSprop"
+learning_rate: 5e-4
+dropout_rate: 0.0
+
+num_pre_epochs: 30
+num_epochs: 300
+win_size: 10
+pred_size: 1
+
+resume_last: False
+
+Selection: "rmse"
+
+Loss:
+  name: "mae_and_mse"
+  alpha: 40
+  theta: 0.1
+
+feat_proj_dims:
+  - 24
+  - 32
+  - 32
+
+WLE:
+  model_class: "model.modules.wle"
+  in_channels: 37
+  hidden_channels: 37
+  out_channels: 1
+
+TLSSM:
+  model_class: "model.modules.tlssm"
+  d_model: 1
+  d_ssm: 1
+  headdim: 1
+  d_state: 4
+  d_conv: 2
+  rmsnorm: False
+
+EarlyStop_patience: 30
+EarlyStop_min_delta: 1.0e-4
+
+seed: 1

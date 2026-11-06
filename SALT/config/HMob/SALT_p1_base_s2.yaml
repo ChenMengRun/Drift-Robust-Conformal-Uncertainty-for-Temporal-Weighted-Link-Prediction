@@ -1,0 +1,51 @@
+# ===== P1 多种子确认 · BASELINE 臂（无 TSF）=====
+# 与 SALT_scratch_baseline.yaml 完全同参，仅 num_epochs 由 bat 的 SALT_MAX_EPOCHS 截断、并固定 seed。
+data_name: "HMob"
+# 与官方 model.salt.SALT 数值等价（已校验 Test dense edge 26.32 ≈ 官方 26.31），
+# 但热路径不碰 torch_sparse，避免该扩展在本机的问题。
+model: "model.salt_dense.SALT_Dense"
+
+optimizer: "RMSprop"
+learning_rate: 5e-4
+dropout_rate: 0.0
+
+num_pre_epochs: 30
+num_epochs: 300
+win_size: 5
+pred_size: 1
+
+resume_last: False
+
+# 选优准则 = 官方指标（密集 RMSE）
+Selection: "rmse"
+
+Loss:
+  name: "mae_and_mse"
+  alpha: 40
+  theta: 0.1
+
+feat_proj_dims:
+  - 32
+  - 32
+  - 32
+
+WLE:
+  model_class: "model.modules.wle"
+  in_channels: 96
+  hidden_channels: 96
+  out_channels: 1
+
+TLSSM:
+  model_class: "model.modules.tlssm"
+  d_model: 1
+  d_ssm: 1
+  headdim: 1
+  d_state: 4
+  d_conv: 2
+  rmsnorm: False
+
+EarlyStop_patience: 30
+EarlyStop_min_delta: 1.0e-4
+
+# ---- 多 seed 控制（train.py 读取；环境变量 SALT_SEED 优先级更高）----
+seed: 2

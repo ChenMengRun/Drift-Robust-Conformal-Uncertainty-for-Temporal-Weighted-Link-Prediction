@@ -1,0 +1,14 @@
+== SALT @ INVIS15 | ckpt: 官方 Pretrained（形状匹配加载）
+权重加载: 39 跳过: 0; 概率模型: False; device: cuda
+test 边数: 6365; 真值范围: [1.00, 50.00]
+[点预测] edge-RMSE=16.2626  edge-MAE=9.9324  (原始空间)
+
+[真值分层] bin,n,RMSE,MAE,meanσ,cov95 (见 tail_bins.csv)
+      p0-p50  n=  3153  RMSE=   1.813  MAE=  1.553  meanσ=    nan  cov95=nan  frac=0.495
+     p50-p75  n=  1602  RMSE=   7.719  MAE=  7.203  meanσ=    nan  cov95=nan  frac=0.252
+     p75-p90  n=   968  RMSE=  21.307  MAE= 20.731  meanσ=    nan  cov95=nan  frac=0.152
+     p90-p95  n=   286  RMSE=  35.461  MAE= 35.308  meanσ=    nan  cov95=nan  frac=0.045
+     p95-p99  n=   269  RMSE=  45.665  MAE= 45.603  meanσ=    nan  cov95=nan  frac=0.042
+    p99-p100  n=    87  RMSE=  50.000  MAE= 50.000  meanσ=    nan  cov95=nan  frac=0.014
+
+[同方差对照] σ_const(val)=16.2861  CRPS=8.5540  NLL=4.2078  ECE=0.1877

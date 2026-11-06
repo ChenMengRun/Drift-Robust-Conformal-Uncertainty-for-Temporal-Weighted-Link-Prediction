@@ -1,0 +1,37 @@
+data_name: INVIS13
+model: model.salt_inn.SALT_INN
+optimizer: RMSprop
+learning_rate: 5e-4
+dropout_rate: 0.0
+num_pre_epochs: 30
+num_epochs: 300
+win_size: 10
+pred_size: 1
+resume_last: false
+Loss:
+  name: nll
+  alpha: 1.0
+  theta: 0.1
+  beta: 3.0
+feat_proj_dims:
+- 10
+- 32
+- 32
+WLE:
+  model_class: model.modules.inn
+  in_channels: 37
+  hidden_channels: 37
+  out_channels: 2
+TLSSM:
+  model_class: model.modules.tlssm
+  d_model: 1
+  d_ssm: 1
+  headdim: 1
+  d_state: 4
+  d_conv: 2
+  rmsnorm: false
+EarlyStop_patience: 15
+EarlyStop_min_delta: 0.0001
+Selection: edge_rmse
+Sel_lambda: 0.1
+Sel_norm: true

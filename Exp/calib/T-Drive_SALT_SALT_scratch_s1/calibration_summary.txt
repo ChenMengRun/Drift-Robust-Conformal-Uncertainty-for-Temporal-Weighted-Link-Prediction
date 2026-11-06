@@ -1,0 +1,14 @@
+== SALT @ T-Drive | ckpt: Exp/pt/T-Drive/SALT_scratch_s1/10_134.148_13.126.pth
+权重加载: 39 跳过: 0; 概率模型: False; device: cuda
+test 边数: 1092175; 真值范围: [0.01, 5000.00]
+[点预测] edge-RMSE=722.8239  edge-MAE=409.4269  (原始空间)
+
+[真值分层] bin,n,RMSE,MAE,meanσ,cov95 (见 tail_bins.csv)
+      p0-p50  n=546082  RMSE= 487.245  MAE=261.184  meanσ=    nan  cov95=nan  frac=0.500
+     p50-p75  n=273015  RMSE= 711.834  MAE=443.256  meanσ=    nan  cov95=nan  frac=0.250
+     p75-p90  n=163812  RMSE= 934.258  MAE=580.819  meanσ=    nan  cov95=nan  frac=0.150
+     p90-p95  n= 54650  RMSE=1136.772  MAE=745.893  meanσ=    nan  cov95=nan  frac=0.050
+     p95-p99  n= 43663  RMSE=1259.150  MAE=853.831  meanσ=    nan  cov95=nan  frac=0.040
+    p99-p100  n= 10953  RMSE=1345.264  MAE=943.412  meanσ=    nan  cov95=nan  frac=0.010
+
+[同方差对照] σ_const(val)=817.6161  CRPS=365.1256  NLL=8.0161  ECE=0.2210

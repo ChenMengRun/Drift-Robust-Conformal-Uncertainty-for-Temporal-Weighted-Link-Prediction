@@ -1,0 +1,12 @@
+数据集: T-Drive
+发生时间: 2026-10-17 10:27:55
+错误分类: 出现 NaN/Inf（梯度或 loss 发散）
+最后到达 epoch: 9
+
+完整堆栈:
+Traceback (most recent call last):
+  File "SALT/inn_train.py", line 780, in <module>
+    train()
+  File "SALT/inn_train.py", line 510, in train
+    raise RuntimeError(
+RuntimeError: 训练 loss 出现 NaN/Inf（epoch=9, step=86）。常见原因：学习率过大导致梯度发散 / 数值下溢 / 输入含非法值（NaN）。请检查学习率与数据预处理。

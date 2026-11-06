@@ -1,0 +1,9 @@
+数据集         persistence edge-RMSE     快照数
+DC                       162.3873      50
+HMob                      23.6717      50
+INVIS13                   10.4925      50
+INVIS15                    9.3470      50
+IoT                       14.4220      50
+LyonSchool                 4.5827      50
+T-Drive                  678.0413      50
+Thiers13                  10.8399      50

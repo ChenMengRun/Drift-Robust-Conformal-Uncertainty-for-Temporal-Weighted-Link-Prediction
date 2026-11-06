@@ -1,0 +1,45 @@
+data_name: "HMob"
+model: "model.salt_dense.SALT_Edge_Dense"
+
+optimizer: "RMSprop"
+learning_rate: 5e-4
+dropout_rate: 0.0
+
+num_pre_epochs: 30
+num_epochs: 30
+win_size: 5
+pred_size: 1
+
+
+resume_last: False
+
+Loss:
+  name: "mae_and_mse"
+  alpha: 40
+  theta: 0.1
+
+feat_proj_dims:
+  - 32
+  - 32
+  - 32
+
+WLE:
+  model_class: "model.modules.wle"
+  in_channels: 96
+  hidden_channels: 96
+  out_channels: 1
+
+TLSSM:
+  model_class: "model.modules.tlssm"
+  d_model: 1
+  d_ssm: 1
+  headdim: 1
+  d_state: 4
+  d_conv: 2
+  rmsnorm: False
+
+# ---- 早停机制（SALT train.py 读取）----
+EarlyStop_patience: 30      # 连续 N 个 epoch 选优指标无改善(Δ<EarlyStop_min_delta) 即停止
+EarlyStop_min_delta: 1.0e-4 # 改善幅度小于此值视为“无改善”
+
+Selection: "edge_rmse"

@@ -1,0 +1,52 @@
+# ===== P1 多种子确认 · TSF 臂 =====
+# 与 SALT_scratch_tsf.yaml 完全同参，仅加 seed。唯一变量 = tsf: true。
+data_name: "HMob"
+model: "model.salt_dense.SALT_Dense"
+
+# ===== 本实验唯一变量：开启 TSF 时序结构特征 =====
+tsf: true
+
+optimizer: "RMSprop"
+learning_rate: 5e-4
+dropout_rate: 0.0
+
+num_pre_epochs: 30
+num_epochs: 300
+win_size: 5
+pred_size: 1
+
+resume_last: False
+
+Selection: "rmse"
+
+Loss:
+  name: "mae_and_mse"
+  alpha: 40
+  theta: 0.1
+
+# 首层维度会被 trainer 自动改为 base_feat_dim + 12（HMob: 32 + 12 = 44）
+feat_proj_dims:
+  - 32
+  - 32
+  - 32
+
+WLE:
+  model_class: "model.modules.wle"
+  in_channels: 96
+  hidden_channels: 96
+  out_channels: 1
+
+TLSSM:
+  model_class: "model.modules.tlssm"
+  d_model: 1
+  d_ssm: 1
+  headdim: 1
+  d_state: 4
+  d_conv: 2
+  rmsnorm: False
+
+EarlyStop_patience: 30
+EarlyStop_min_delta: 1.0e-4
+
+# ---- 多 seed 控制（train.py 读取；环境变量 SALT_SEED 优先级更高）----
+seed: 1

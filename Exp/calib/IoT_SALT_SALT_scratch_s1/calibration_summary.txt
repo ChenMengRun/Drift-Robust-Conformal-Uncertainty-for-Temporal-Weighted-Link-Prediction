@@ -1,0 +1,14 @@
+== SALT @ IoT | ckpt: Exp/pt/IoT/SALT_scratch_s1/19_3.889_0.244.pth
+权重加载: 39 跳过: 0; 概率模型: False; device: cuda
+test 边数: 2875; 真值范围: [0.04, 598.48]
+[点预测] edge-RMSE=28.5720  edge-MAE=7.9985  (原始空间)
+
+[真值分层] bin,n,RMSE,MAE,meanσ,cov95 (见 tail_bins.csv)
+      p0-p50  n=  1435  RMSE=   2.309  MAE=  0.800  meanσ=    nan  cov95=nan  frac=0.499
+     p50-p75  n=   721  RMSE=  20.287  MAE=  3.607  meanσ=    nan  cov95=nan  frac=0.251
+     p75-p90  n=   431  RMSE=   8.240  MAE=  8.078  meanσ=    nan  cov95=nan  frac=0.150
+     p90-p95  n=   133  RMSE=  20.141  MAE= 18.471  meanσ=    nan  cov95=nan  frac=0.046
+     p95-p99  n=   126  RMSE=  75.289  MAE= 72.595  meanσ=    nan  cov95=nan  frac=0.044
+    p99-p100  n=    29  RMSE= 207.215  MAE=143.498  meanσ=    nan  cov95=nan  frac=0.010
+
+[同方差对照] σ_const(val)=99.5772  CRPS=25.3688  NLL=5.5610  ECE=0.4421

@@ -1,0 +1,106 @@
+{
+  "HMob": {
+    "paper_col": "KAIST",
+    "salt": {
+      "rmse": 10.77,
+      "mae": 2.63
+    },
+    "idea": {
+      "rmse": 13.84,
+      "mae": 3.69
+    },
+    "ci95_rmse": 0.18,
+    "ci95_mae": 0.06
+  },
+  "DC": {
+    "paper_col": "DC",
+    "salt": {
+      "rmse": 58.55,
+      "mae": 13.22
+    },
+    "idea": {
+      "rmse": 65.04,
+      "mae": 15.47
+    },
+    "ci95_rmse": 0.45,
+    "ci95_mae": 0.58
+  },
+  "IoT": {
+    "paper_col": "IoT",
+    "salt": {
+      "rmse": 1.77,
+      "mae": 0.11
+    },
+    "idea": {
+      "rmse": 2.51,
+      "mae": 0.17
+    },
+    "ci95_rmse": 0.19,
+    "ci95_mae": 0.01
+  },
+  "T-Drive": {
+    "paper_col": "T-Drive",
+    "salt": {
+      "rmse": 134.75,
+      "mae": 12.7
+    },
+    "idea": {
+      "rmse": 171.67,
+      "mae": 22.03
+    },
+    "ci95_rmse": 1.03,
+    "ci95_mae": 0.2
+  },
+  "LyonSchool": {
+    "paper_col": "LyonSchool",
+    "salt": {
+      "rmse": 2.67,
+      "mae": 1.19
+    },
+    "idea": {
+      "rmse": 2.89,
+      "mae": 1.27
+    },
+    "ci95_rmse": 0.05,
+    "ci95_mae": 0.02
+  },
+  "INVIS13": {
+    "paper_col": "InVIS13",
+    "salt": {
+      "rmse": 5.01,
+      "mae": 1.4
+    },
+    "idea": {
+      "rmse": 6.56,
+      "mae": 1.86
+    },
+    "ci95_rmse": 0.09,
+    "ci95_mae": 0.03
+  },
+  "INVIS15": {
+    "paper_col": "InVIS15",
+    "salt": {
+      "rmse": 2.73,
+      "mae": 0.54
+    },
+    "idea": {
+      "rmse": 3.99,
+      "mae": 0.79
+    },
+    "ci95_rmse": 0.05,
+    "ci95_mae": 0.01
+  },
+  "Thiers13": {
+    "paper_col": "Thiers13",
+    "salt": {
+      "rmse": 5.33,
+      "mae": 1.7
+    },
+    "idea": {
+      "rmse": 6.12,
+      "mae": 1.96
+    },
+    "ci95_rmse": 0.15,
+    "ci95_mae": 0.06
+  }
+}

@@ -1,0 +1,62 @@
+# ===== Probe: DC from-scratch convergence check =====
+#
+# QUESTION: does DC learn when trained from scratch, the way HMob does?
+#
+# Measured on 2026-10-09 with this same architecture:
+#   HMob   : loss 35809 -> 29949 over epochs 2..11, Test 13.18 -> 10.86  (LEARNS)
+#   INVIS15: loss 46001 -> 45214 over epochs 2..11, Test  4.32 ->  4.40  (STALLED)
+# INVIS15 stalls despite 55 epochs of budget AND the same stall appears with the
+# official model.salt.SALT, so it is not an artefact of the dense stand-in.
+#
+# This probe runs DC with the identical trainer/loss/optimiser so the loss
+# trajectory is directly comparable to the two rows above. 8 epochs is enough:
+# a dataset that learns shows it within the first 10 epochs at this scale.
+#
+# Launch:  SALT_MAX_EPOCHS=8  (config itself mirrors the official DC/SALT.yaml,
+#          only model -> SALT_Dense, plus Selection/seed/EarlyStop for parity)
+
+data_name: "DC"
+model: "model.salt_dense.SALT_Dense"
+
+optimizer: "RMSprop"
+learning_rate: 5e-4
+dropout_rate: 0.0
+
+num_pre_epochs: 30
+num_epochs: 300
+win_size: 5
+pred_size: 1
+
+resume_last: False
+
+Selection: "rmse"
+
+Loss:
+  name: "mae_and_mse"
+  alpha: 10
+  theta: 0.1
+
+feat_proj_dims:
+  - 64
+  - 32
+  - 32
+
+WLE:
+  model_class: "model.modules.wle"
+  in_channels: 132
+  hidden_channels: 132
+  out_channels: 1
+
+TLSSM:
+  model_class: "model.modules.tlssm"
+  d_model: 1
+  d_ssm: 1
+  headdim: 1
+  d_state: 4
+  d_conv: 2
+  rmsnorm: False
+
+EarlyStop_patience: 30
+EarlyStop_min_delta: 1.0e-4
+
+seed: 1

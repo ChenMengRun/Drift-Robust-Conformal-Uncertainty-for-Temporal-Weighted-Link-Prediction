@@ -1,0 +1,37 @@
+data_name: IoT
+model: model.salt_prob.SALT_Prob
+optimizer: RMSprop
+learning_rate: 5e-4
+dropout_rate: 0.0
+num_pre_epochs: 30
+num_epochs: 300
+win_size: 10
+pred_size: 1
+resume_last: false
+Loss:
+  name: nll
+  alpha: 1.0
+  theta: 0.1
+  beta: 0.0
+feat_proj_dims:
+- 64
+- 64
+- 32
+WLE:
+  model_class: model.modules.wle
+  in_channels: 80
+  hidden_channels: 80
+  out_channels: 1
+TLSSM:
+  model_class: model.modules.tlssm
+  d_model: 1
+  d_ssm: 1
+  headdim: 1
+  d_state: 4
+  d_conv: 2
+  rmsnorm: false
+EarlyStop_patience: 15
+EarlyStop_min_delta: 0.0001
+Selection: edge_rmse
+Sel_lambda: 0.1
+Sel_norm: true

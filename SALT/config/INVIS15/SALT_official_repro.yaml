@@ -1,0 +1,66 @@
+# ===== INVIS15 -- FULL OFFICIAL PROTOCOL REPRODUCTION =====
+#
+# Purpose: reproduce the official training recipe EXACTLY, to see what
+# `python train.py --config ./SALT/config/INVIS15/SALT.yaml --reproduction false`
+# is actually supposed to produce on this machine.
+#
+# This file is byte-for-byte the official SALT/config/INVIS15/SALT.yaml EXCEPT:
+#
+#   1. model: "model.salt.SALT"  ->  "model.salt_dense.SALT_Dense"
+#      This is the ONLY functional deviation, and it is forced: the official
+#      Salt class goes through torch_sparse, which crashes natively on this box.
+#      SALT_Dense is a numerically equivalent re-implementation (verified:
+#      loading the official weights and evaluating with lr=0 gives 2.806 here,
+#      against the paper's 2.7795).
+#
+#   2. NO EarlyStop_patience key.
+#      Official train.py has NO early stopping at all:
+#          for epoch in range(epoch_start, params.num_epochs):   # runs all 300
+#      and only saves when the selection metric improves. Our trainer defaults
+#      EarlyStop_patience to "never" when the key is absent, so leaving it out
+#      reproduces the official behaviour. THIS IS THE MAIN DEVIATION WE HAD:
+#      earlier INVIS15 runs were killed at epoch 32 by a patience=30 we added.
+#
+#   3. seed left unset -> defaults to 0, matching official setup_seed(0).
+#
+# Everything else (lr=5e-4, weight_decay=1e-5, alpha=40, theta=0.1, win_size=10,
+# num_epochs=300, optimiser RMSprop, dropout 0.0) is untouched.
+
+data_name: "INVIS15"
+model: "model.salt_dense.SALT_Dense"
+
+optimizer: "RMSprop"
+learning_rate: 5e-4
+dropout_rate: 0.0
+
+num_pre_epochs: 30
+num_epochs: 300
+win_size: 10
+pred_size: 1
+
+resume_last: False
+
+Loss:
+  name: "mae_and_mse"
+  alpha: 40
+  theta: 0.1
+
+feat_proj_dims:
+  - 24
+  - 32
+  - 32
+
+WLE:
+  model_class: "model.modules.wle"
+  in_channels: 37
+  hidden_channels: 37
+  out_channels: 1
+
+TLSSM:
+  model_class: "model.modules.tlssm"
+  d_model: 1
+  d_ssm: 1
+  headdim: 1
+  d_state: 4
+  d_conv: 2
+  rmsnorm: False

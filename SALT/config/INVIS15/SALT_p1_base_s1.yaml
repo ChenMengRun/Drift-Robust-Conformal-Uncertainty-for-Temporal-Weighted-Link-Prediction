@@ -1,0 +1,67 @@
+# ===== INVIS15 P1 pre-check -- BASELINE arm (no TSF), seed 1 =====
+#
+# PURPOSE OF THIS RUN (and ONLY this):
+#   The earlier "INVIS15 cannot reach official from scratch" verdict was based
+#   on a 1-epoch checkpoint (0_3.797) compared against a 300-epoch official
+#   model. That is a training-budget artefact, not a data-set property.
+#   This run gives scratch a real budget (60 epochs) and asks one question:
+#
+#       can scratch reach the local official line of 2.806 at all?
+#
+#   If NO  -> close the INVIS15 / TSF line, cheaply, and stop.
+#   If YES -> then run the tsf arm and compare.
+#
+# Reference numbers (this machine, model.salt_dense.SALT_Dense):
+#   official weights, lr=0 pure eval ................  2.806  (_probe_lr0)
+#   scratch, epoch 0 only ...........................  3.797  (SALT_scratch_baseline)
+#
+# Model is IDENTICAL to the official-baseline probe, so the comparison is fair.
+# Only difference vs SALT_scratch_baseline.yaml: seed pinned to 1, and
+# num_epochs truncated by SALT_MAX_EPOCHS in the .bat.
+
+data_name: "INVIS15"
+model: "model.salt_dense.SALT_Dense"
+
+optimizer: "RMSprop"
+learning_rate: 5e-4
+dropout_rate: 0.0
+
+num_pre_epochs: 30
+num_epochs: 300
+win_size: 10
+pred_size: 1
+
+resume_last: False
+
+Selection: "rmse"
+
+Loss:
+  name: "mae_and_mse"
+  alpha: 40
+  theta: 0.1
+
+feat_proj_dims:
+  - 24
+  - 32
+  - 32
+
+WLE:
+  model_class: "model.modules.wle"
+  in_channels: 37
+  hidden_channels: 37
+  out_channels: 1
+
+TLSSM:
+  model_class: "model.modules.tlssm"
+  d_model: 1
+  d_ssm: 1
+  headdim: 1
+  d_state: 4
+  d_conv: 2
+  rmsnorm: False
+
+EarlyStop_patience: 30
+EarlyStop_min_delta: 1.0e-4
+
+# ---- seed control (env var SALT_SEED overrides this) ----
+seed: 1

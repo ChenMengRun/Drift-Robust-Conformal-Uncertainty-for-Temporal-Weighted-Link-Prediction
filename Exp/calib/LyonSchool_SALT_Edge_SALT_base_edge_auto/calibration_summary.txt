@@ -1,0 +1,13 @@
+== SALT_Edge @ LyonSchool | ckpt: Exp/pt/LyonSchool/SALT_base_edge_auto/5_3.111_1.481.pth
+权重加载: 39 跳过: 0; 概率模型: False; device: cuda
+test 边数: 239579; 真值范围: [1.00, 20.00]
+[点预测] edge-RMSE=9.7455  edge-MAE=7.7272  (原始空间)
+
+[真值分层] bin,n,RMSE,MAE,meanσ,cov95 (见 tail_bins.csv)
+      p0-p50  n=107963  RMSE=   3.674  MAE=  3.103  meanσ=    nan  cov95=nan  frac=0.451
+     p50-p75  n= 65934  RMSE=   8.703  MAE=  7.964  meanσ=    nan  cov95=nan  frac=0.275
+     p75-p90  n= 32230  RMSE=  14.032  MAE= 13.448  meanσ=    nan  cov95=nan  frac=0.135
+     p90-p95  n= 20466  RMSE=  16.643  MAE= 16.067  meanσ=    nan  cov95=nan  frac=0.085
+    p99-p100  n= 12986  RMSE=  18.171  MAE= 17.626  meanσ=    nan  cov95=nan  frac=0.054
+
+[同方差对照] σ_const(val)=6.5996  CRPS=5.7076  NLL=3.8962  ECE=0.1170

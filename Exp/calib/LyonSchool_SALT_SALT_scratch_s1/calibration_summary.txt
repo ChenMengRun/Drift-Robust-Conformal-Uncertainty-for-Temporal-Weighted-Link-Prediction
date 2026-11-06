@@ -1,0 +1,13 @@
+== SALT @ LyonSchool | ckpt: Exp/pt/LyonSchool/SALT_scratch_s1/26_4.643_1.978.pth
+权重加载: 39 跳过: 0; 概率模型: False; device: cuda
+test 边数: 239579; 真值范围: [1.00, 20.00]
+[点预测] edge-RMSE=10.5601  edge-MAE=8.5184  (原始空间)
+
+[真值分层] bin,n,RMSE,MAE,meanσ,cov95 (见 tail_bins.csv)
+      p0-p50  n=107963  RMSE=   3.460  MAE=  2.928  meanσ=    nan  cov95=nan  frac=0.451
+     p50-p75  n= 65934  RMSE=   9.619  MAE=  9.267  meanσ=    nan  cov95=nan  frac=0.275
+     p75-p90  n= 32230  RMSE=  15.297  MAE= 15.169  meanσ=    nan  cov95=nan  frac=0.135
+     p90-p95  n= 20466  RMSE=  18.178  MAE= 18.096  meanσ=    nan  cov95=nan  frac=0.085
+    p99-p100  n= 12986  RMSE=  19.660  MAE= 19.594  meanσ=    nan  cov95=nan  frac=0.054
+
+[同方差对照] σ_const(val)=7.2023  CRPS=6.2714  NLL=3.9682  ECE=0.1267

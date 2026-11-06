@@ -1,0 +1,13 @@
+== SALT @ Thiers13 | ckpt: Exp/pt/Thiers13/SALT_scratch_s0/8_10.116_3.234.pth
+权重加载: 39 跳过: 0; 概率模型: False; device: cuda
+test 边数: 191446; 真值范围: [1.00, 50.00]
+[点预测] edge-RMSE=27.5793  edge-MAE=21.5348  (原始空间)
+
+[真值分层] bin,n,RMSE,MAE,meanσ,cov95 (见 tail_bins.csv)
+      p0-p50  n= 93543  RMSE=   8.569  MAE=  6.423  meanσ=    nan  cov95=nan  frac=0.489
+     p50-p75  n= 49892  RMSE=  27.472  MAE= 26.814  meanσ=    nan  cov95=nan  frac=0.261
+     p75-p90  n= 28160  RMSE=  43.394  MAE= 43.115  meanσ=    nan  cov95=nan  frac=0.147
+     p90-p95  n=  5943  RMSE=  48.632  MAE= 48.382  meanσ=    nan  cov95=nan  frac=0.031
+    p99-p100  n= 13908  RMSE=  49.453  MAE= 49.068  meanσ=    nan  cov95=nan  frac=0.073
+
+[同方差对照] σ_const(val)=26.5926  CRPS=15.7871  NLL=4.7374  ECE=0.0619

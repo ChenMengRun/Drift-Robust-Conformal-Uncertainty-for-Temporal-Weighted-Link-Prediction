@@ -1,0 +1,21 @@
+数据集: UNKNOWN
+发生时间: 2026-10-14 10:27:52
+错误分类: 文件/路径缺失（数据集 .npy 或预训练权重未找到）
+最后到达 epoch: n/a
+
+完整堆栈:
+Traceback (most recent call last):
+  File "/root/autodl-tmp/SALT-main/SALT/utils/paramset.py", line 12, in read_yaml
+    with open(yaml_file, encoding='utf-8') as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'SALT/config/Thiers13/SALT_base_edge_auto.yaml'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/autodl-tmp/SALT-main/SALT/inn_train.py", line 204, in <module>
+    params = Paramset(args.config)
+  File "/root/autodl-tmp/SALT-main/SALT/utils/paramset.py", line 7, in __init__
+    self.read_yaml(config_yaml)
+  File "/root/autodl-tmp/SALT-main/SALT/utils/paramset.py", line 15, in read_yaml
+    raise FileNotFoundError(f"{e}: Config file not found") from e
+FileNotFoundError: [Errno 2] No such file or directory: 'SALT/config/Thiers13/SALT_base_edge_auto.yaml': Config file not found
